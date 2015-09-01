@@ -90,6 +90,11 @@ static struct page_info *alloc_largest_available(unsigned long size,
 			continue;
 
 		info = kmalloc(sizeof(struct page_info), GFP_KERNEL);
+		if (!info) {
+			__free_pages(page, orders[i]);
+			return NULL;
+		}
+
 		info->page = page;
 		info->order = orders[i];
 		return info;

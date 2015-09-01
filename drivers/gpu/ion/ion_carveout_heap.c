@@ -314,7 +314,7 @@ int ion_carveout_cache_ops(struct ion_heap *heap, struct ion_buffer *buffer,
 		}
 	}
 
-	if (carveout_heap->has_outer_cache) {
+	if (outer_cache_op && carveout_heap->has_outer_cache) {
 		unsigned long pstart = buffer->priv_phys + offset;
 		outer_cache_op(pstart, pstart + length);
 	}

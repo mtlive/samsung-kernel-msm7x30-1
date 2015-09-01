@@ -111,6 +111,9 @@ void *ion_system_heap_map_kernel(struct ion_heap *heap,
 					sizeof(struct page *) * table->nents,
 					GFP_KERNEL);
 
+		if (!pages)
+			return ERR_PTR(-ENOMEM);
+
 		for_each_sg(table->sgl, sg, table->nents, i)
 			pages[i] = sg_page(sg);
 		vaddr = vmap(pages, table->nents, VM_MAP, PAGE_KERNEL);
