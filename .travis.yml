@@ -33,6 +33,8 @@ script:
 - sudo apt install libfl2
 # getting UberTC
 - git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-7.x" "../arm-eabi-7.x"
+- export CROSS_COMPILE="$(pwd)/../arm-eabi-${GCC_VERSION}.x/bin/arm-eabi-"
+- export PATH=$PATH:"$(pwd)/../arm-eabi-${GCC_VERSION}.x/bin/"
 - sudo ldconfig
 - echo $LD_LIBRARY_PATH
 #- source build.sh
