@@ -41,7 +41,7 @@ script:
 - make ancora_oc_exuv_defconfig 
 - make -j 4 V=1
 
-find . -name <name> -print | zip modules.zip -@
+- find . -name <name> -print | zip modules.zip -@
 # Export of zipfile to deploy
 #- export zipfile="${zipfile}"
 
