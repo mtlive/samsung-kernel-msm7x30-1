@@ -205,7 +205,7 @@ extern int* get_i2c_clock_addr(struct i2c_adapter *adap);
 /*=============================================================*/
 
 static int s5k4ecgx_probe_init_sensor(void);
-void s5k4ecgx_set_power(int status);
+int s5k4ecgx_set_power(int status);
 
 #ifdef CONFIG_LOAD_FILE
     static int s5k4ecgx_regs_table_write(char *name);
