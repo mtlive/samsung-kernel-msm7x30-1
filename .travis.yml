@@ -1,0 +1,57 @@
+sudo: required
+dist: trusty
+services:
+  - docker
+#before_install:
+#- docker pull lineageos4microg/docker-lineage-cicd
+#- docker run -e "BRANCH_NAME=cm-11.0" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
+language: c
+cache: ccache
+env: GCC_VERSION=7
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-7
+    - g++-7
+    - flex
+script:
+- curl https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common/commit/9d533762fe84a1fb1bcd3e55a4ed338617d8b536.patch | git am #updates
+- curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/9121461faa73def5937210b8c760147740fe5c6a.patch | git am #kernel update
+- curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/d1d5602c46926d22fe2b46106b79acf704ff933a.patch | git am #kernel update
+- curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/78656d2697300d856e40a4da410ccca00c16763f.patch | git am #gcc 5+ fix
+- curl https://github.com/torvalds/linux/commit/aeea3592a13bf12861943e44fc48f1f270941f8d.patch | git am #arm ftrace.h - gcc
+- curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/393ab392648781c2d3351266537856bad113cebd.patch | git am #static methods for iommu sync lock and unlock - gcc
+# Install dependency
+- sudo apt-get install -y dpkg
+- sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ bionic main"
+#- wget http://ftp.br.debian.org/debian/pool/main/f/flex/libfl2_2.6.4-6.1_amd64.deb
+#- sudo dpkg -i libfl2_2.6.4-6.1_amd64.deb
+#- sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+- sudo apt-get update
+- sudo apt install libfl2
+# getting UberTC
+- git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-7.x" "../arm-eabi-7.x"
+- sudo ldconfig
+- echo $LD_LIBRARY_PATH
+#- source build.sh
+- export ARCH=arm && export SUBARCH=arm
+- make clean && make mrproper 
+- make ancora_oc_exuv_defconfig 
+- make -j 4 V=1
+
+find . -name <name> -print | zip modules.zip -@
+# Export of zipfile to deploy
+#- export zipfile="${zipfile}"
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: ${KEY}
+  file_glob: true
+  file: "arch/${ARCH}/boot/*Image*"
+  file: "modules.zip"
+  on:
+  #  tags: true
+    all_branches: true
