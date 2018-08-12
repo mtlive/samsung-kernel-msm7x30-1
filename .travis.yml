@@ -17,8 +17,11 @@ addons:
     - g++-7
     - flex
 script:
-- curl https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common/commit/9d533762fe84a1fb1bcd3e55a4ed338617d8b536.patch | git am --3way  --exclude arch/arm/configs/ancora_defconfig #updates
-- git am --skip
+#- curl https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common/commit/9d533762fe84a1fb1bcd3e55a4ed338617d8b536.patch | git am --3way  --exclude arch/arm/configs/ancora_defconfig #updates
+#- git remote add RR https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common.git -b cm12.1
+#- git fetch RR
+#- git checkout cm-12.1
+#- git checkout -p RR/cm-12.1 drivers/media/video/msm/s5k4ecgx.c  drivers/media/video/msm/sr030pc30.c 
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/9121461faa73def5937210b8c760147740fe5c6a.patch | git am #kernel update
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/d1d5602c46926d22fe2b46106b79acf704ff933a.patch | git am #kernel update
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/78656d2697300d856e40a4da410ccca00c16763f.patch | git am #gcc 5+ fix
@@ -44,7 +47,7 @@ script:
 - make ancora_oc_exuv_defconfig 
 - make -j 4 V=1
 
-- find . -name <name> -print | zip modules.zip -@
+- find . -name "*.ko" -print | zip modules.zip -@
 # Export of zipfile to deploy
 #- export zipfile="${zipfile}"
 
