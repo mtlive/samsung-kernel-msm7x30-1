@@ -17,7 +17,7 @@ addons:
     - g++-7
     - flex
 script:
-- curl https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common/commit/9d533762fe84a1fb1bcd3e55a4ed338617d8b536.patch | git am --3way #updates
+- curl https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common/commit/9d533762fe84a1fb1bcd3e55a4ed338617d8b536.patch | git am --3way  --exclude arch/arm/configs/ancora_defconfig #updates
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/9121461faa73def5937210b8c760147740fe5c6a.patch | git am #kernel update
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/d1d5602c46926d22fe2b46106b79acf704ff933a.patch | git am #kernel update
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/78656d2697300d856e40a4da410ccca00c16763f.patch | git am #gcc 5+ fix
