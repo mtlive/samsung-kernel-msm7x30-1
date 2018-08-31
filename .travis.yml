@@ -57,7 +57,7 @@ deploy:
   api_key: ${KEY}
   file_glob: true
   file: 
-    - "arch/${ARCH}/boot/*Image*"
+    - "arch/${ARCH}/boot/zImage*"
     - "modules.zip"
   on:
   #  tags: true
