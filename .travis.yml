@@ -6,7 +6,7 @@ dist: trusty
 #- docker pull lineageos4microg/docker-lineage-cicd
 #- docker run -e "BRANCH_NAME=cm-11.0" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
 language: c
-env: GCC_VERSION=8.x
+env: GCC_VERSION=7.x
 addons:
   apt:
     sources:
