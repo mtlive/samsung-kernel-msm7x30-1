@@ -7,14 +7,14 @@ dist: trusty
 #- docker run -e "BRANCH_NAME=cm-11.0" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
 language: c
 cache: ccache
-env: GCC_VERSION=7
+env: GCC_VERSION=8.x
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - gcc-7
-    - g++-7
+    - gcc-8
+    - g++-8
     - flex
 script:
 #- curl https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common/commit/9d533762fe84a1fb1bcd3e55a4ed338617d8b536.patch | git am --3way  --exclude arch/arm/configs/ancora_defconfig #updates
@@ -36,9 +36,9 @@ script:
 - sudo apt-get update
 - sudo apt install libfl2
 # getting UberTC
-- git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-7.x" "../arm-eabi-7.x"
-- export CROSS_COMPILE="$(pwd)/../arm-eabi-${GCC_VERSION}.x/bin/arm-eabi-"
-- export PATH=$PATH:"$(pwd)/../arm-eabi-${GCC_VERSION}.x/bin/"
+- git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
+- export CROSS_COMPILE="$(pwd)/../arm-eabi-${GCC_VERSION}/bin/arm-eabi-"
+- export PATH=$PATH:"$(pwd)/../arm-eabi-${GCC_VERSION}/bin/"
 - sudo ldconfig
 - echo $LD_LIBRARY_PATH
 #- source build.sh
@@ -47,7 +47,7 @@ script:
 - make ancora_oc_exuv_defconfig 
 - make -j 4
 
-- find . -name "*.ko" -print | zip modules.zip -@
+- find . -name "*.ko" -print | zip -j modules.zip -@
 # Export of zipfile to deploy
 #- export zipfile="${zipfile}"
 
