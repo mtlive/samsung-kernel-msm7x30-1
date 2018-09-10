@@ -377,7 +377,8 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -march=armv7-a \
                    -mfpu=neon\
 		   -mfloat-abi=softfp\
-		   -std=gnu89
+		   -std=gnu89\
+		   --param l1-cache-line-size=64 l1-cache-size=32 --param l2-cache-size=384
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
@@ -577,7 +578,7 @@ ifdef CONFIG_CC_OPTIMIZE_MORE
 KBUILD_CFLAGS += -O3 -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize
 endif
 ifdef CONFIG_CC_OPTIMIZE_FAST
-KBUILD_CFLAGS += -Ofast $(GRAPHITE) -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize -fsingle-precision-constant
+KBUILD_CFLAGS += -Ofast $(GRAPHITE) -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize -fsingle-precision-constant -fsched-pressure -fnounroll-loops -fipa-icf -fweb -flimit-function-alignment -flto
 endif
 
 include $(srctree)/arch/$(SRCARCH)/Makefile
