@@ -345,7 +345,7 @@ KALLSYMS	= scripts/kallsyms
 PERL		= perl
 CHECK		= sparse
 
-GRAPHITE = -fgraphite -fgraphite-identity -floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block -ftree-loop-linear
+GRAPHITE = -fgraphite -fgraphite-identity -floop-interchange -floop-strip-mine -floop-block -ftree-loop-linear
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
                   -Wbitwise -Wno-return-void $(CF)
@@ -378,7 +378,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
                    -mfpu=neon\
 		   -mfloat-abi=softfp\
 		   -std=gnu89\
-		   --param l1-cache-line-size=64 --param l1-cache-size=64 --param l2-cache-size=384
+		   --param l1-cache-line-size=64 --param l1-cache-size=32
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
