@@ -378,7 +378,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
                    -mfpu=neon\
 		   -mfloat-abi=softfp\
 		   -std=gnu89\
-		   --param l1-cache-line-size=64 --param l1-cache-size=32 --param l2-cache-size=384
+		   --param l1-cache-line-size=32 --param l1-cache-size=32 --param l2-cache-size=384
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
