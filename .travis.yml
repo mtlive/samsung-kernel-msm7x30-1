@@ -35,7 +35,7 @@ script:
 - sudo apt-get update
 - sudo apt install libfl2
 # getting UberTC
-- git clone --progress --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
+- git clone --progress --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}.git" "../arm-eabi-${GCC_VERSION}"
 - export CROSS_COMPILE='$(pwd)/../arm-eabi-${GCC_VERSION}/bin/arm-eabi-'
 - export PATH=$PATH:'$(pwd)/../arm-eabi-${GCC_VERSION}/bin/'
 - sudo ldconfig
