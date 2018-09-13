@@ -37,7 +37,7 @@ script:
 # getting UberTC
 - git clone --progress --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}.git" "../arm-eabi-${GCC_VERSION}"
 - export CROSS_COMPILE="${PWD}/../arm-eabi-${GCC_VERSION}/bin/arm-eabi-"
-- ls $CROSS_COMPILE/..
+- ls -Rl "${PWD}/../arm-eabi-${GCC_VERSION}"
 - export PATH=$PATH:"${PWD}/../arm-eabi-${GCC_VERSION}/bin/"
 - sudo ldconfig
 - echo $LD_LIBRARY_PATH
