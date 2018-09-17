@@ -6,7 +6,7 @@ dist: trusty
 #- docker pull lineageos4microg/docker-lineage-cicd
 #- docker run -e "BRANCH_NAME=cm-11.0" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
 language: c
-env: GCC_VERSION=8.x
+env: GCC_VERSION=7.x
 addons:
   apt:
     sources:
@@ -35,7 +35,9 @@ script:
 - sudo apt-get update
 - sudo apt install libfl2
 # getting UberTC
-- git clone --progress --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}.git" "../arm-eabi-${GCC_VERSION}"
+#- git clone --progress --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}.git" "../arm-eabi-${GCC_VERSION}"
+- wget https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-eabi/gcc-linaro-7.3.1-2018.05-x86_64_arm-eabi.tar.xz
+- tar -xzf gcc-linaro-7.3.1-2018.05-x86_64_arm-eabi.tar.xz -C ../arm-eabi-${GCC_VERSION}
 - export CROSS_COMPILE="${PWD}/../arm-eabi-${GCC_VERSION}/bin/arm-eabi-"
 - ls -Rl "${PWD}/../arm-eabi-${GCC_VERSION}"
 - export PATH=$PATH:"${PWD}/../arm-eabi-${GCC_VERSION}/bin/"
