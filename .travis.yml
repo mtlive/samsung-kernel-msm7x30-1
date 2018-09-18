@@ -36,9 +36,9 @@ script:
 - sudo apt install libfl2
 # getting UberTC
 #- git clone --progress --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}.git" "../arm-eabi-${GCC_VERSION}"
-- wget -q https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-eabi/gcc-linaro-7.3.1-2018.05-x86_64_arm-eabi.tar.xz
-- tar -xJf gcc-linaro-7.3.1-2018.05-x86_64_arm-eabi.tar.xz
-- mv gcc-linaro-7.3.1-2018.05-x86_64_arm-eabi ../arm-eabi-${GCC_VERSION}
+- wget -q https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf.tar.xz
+- tar -xJf gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf.tar.xz
+- mv gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf ../arm-eabi-${GCC_VERSION}
 - export CROSS_COMPILE="${PWD}/../arm-eabi-${GCC_VERSION}/bin/arm-eabi-"
 - export PATH=$PATH:"${PWD}/../arm-eabi-${GCC_VERSION}/bin/"
 - sudo ldconfig
