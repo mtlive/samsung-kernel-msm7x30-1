@@ -40,7 +40,7 @@ script:
 - tar -xJf gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf.tar.xz
 - mv gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf ../arm-eabi-${GCC_VERSION}
 - ls ../arm-eabi-${GCC_VERSION}/bin
-- export CROSS_COMPILE="${PWD}/../arm-eabi-${GCC_VERSION}/bin/arm-eabi-"
+- export CROSS_COMPILE="${PWD}/../arm-eabi-${GCC_VERSION}/bin/arm-linux-gnueabihf-"
 - export PATH=$PATH:"${PWD}/../arm-eabi-${GCC_VERSION}/bin/"
 - sudo ldconfig
 - echo $LD_LIBRARY_PATH
