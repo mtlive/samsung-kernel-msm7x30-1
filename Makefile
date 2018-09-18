@@ -345,7 +345,7 @@ KALLSYMS	= scripts/kallsyms
 PERL		= perl
 CHECK		= sparse
 
-GRAPHITE = -fgraphite -fgraphite-identity -floop-interchange -floop-strip-mine -floop-block -ftree-loop-linear
+GRAPHITE = -fgraphite -fgraphite-identity -floop-interchange -floop-strip-mine -floop-block -ftree-loop-linear -ftree-loop-distribution
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
                   -Wbitwise -Wno-return-void $(CF)
@@ -376,7 +376,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -mtune=cortex-a8 \
 		   -march=armv7-a \
                    -mfpu=neon\
-		   -mfloat-abi=hard\
+		   -mfloat-abi=softfp\
 		   -std=gnu89\
 		   --param l1-cache-line-size=64 --param l1-cache-size=32 --param l2-cache-size=384
 		
@@ -579,7 +579,7 @@ ifdef CONFIG_CC_OPTIMIZE_MORE
 KBUILD_CFLAGS += -O3 -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize
 endif
 ifdef CONFIG_CC_OPTIMIZE_FAST
-KBUILD_CFLAGS += -Ofast $(GRAPHITE) -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize -fsingle-precision-constant -fsched-pressure -fno-unroll-loops -fipa-icf -fweb -flimit-function-alignment -flto
+KBUILD_CFLAGS += -O3 $(GRAPHITE) -fmodulo-sched -fmodulo-sched-allow-regmoves -fsingle-precision-constant -fsched-pressure -fno-unroll-loops -fipa-icf -fweb -flimit-function-alignment -flto
 endif
 
 include $(srctree)/arch/$(SRCARCH)/Makefile
