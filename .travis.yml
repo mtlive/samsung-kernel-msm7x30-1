@@ -11,8 +11,6 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - gcc-8
-    - g++-8
     - flex
 script:
 #- curl https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common/commit/9d533762fe84a1fb1bcd3e55a4ed338617d8b536.patch | git am --3way  --exclude arch/arm/configs/ancora_defconfig #updates
@@ -43,7 +41,7 @@ script:
 - export ARCH=arm && export SUBARCH=arm
 #- make clean && make mrproper 
 - make ancora_oc_exuv_defconfig 
-- make -j 4
+- make -j4
 
 - find . -name "*.ko" -print | zip -j modules.zip -@
 # Export of zipfile to deploy
