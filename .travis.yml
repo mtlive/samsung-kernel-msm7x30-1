@@ -43,7 +43,8 @@ script:
 - echo $LD_LIBRARY_PATH
 #- source build.sh
 - export ARCH=arm && export SUBARCH=arm
-- make clean && make mrproper 
+#- make clean
+- make mrproper 
 - make ancora_oc_exuv_defconfig 
 - make -j 4
 
