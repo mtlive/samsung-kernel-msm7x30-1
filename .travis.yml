@@ -39,12 +39,10 @@ script:
 - ls ../arm-eabi-${GCC_VERSION}/bin
 - export CROSS_COMPILE="${PWD}/../arm-eabi-${GCC_VERSION}/bin/arm-eabi-"
 - export PATH=$PATH:"${PWD}/../arm-eabi-${GCC_VERSION}/bin/"
-- sudo ldconfig
 - echo $LD_LIBRARY_PATH
 #- source build.sh
 - export ARCH=arm && export SUBARCH=arm
-#- make clean
-- make mrproper 
+#- make clean && make mrproper 
 - make ancora_oc_exuv_defconfig 
 - make -j 4
 
