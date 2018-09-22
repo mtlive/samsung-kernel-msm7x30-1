@@ -8,8 +8,6 @@ language: c
 env: GCC_VERSION=4.9
 addons:
   apt:
-    sources:
-    - ubuntu-toolchain-r-test
     packages:
     - flex
 script:
@@ -32,11 +30,10 @@ script:
 - sudo apt-get update
 - sudo apt install libfl2
 # getting UberTC
-- git clone --progress --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}.git" "../arm-eabi-${GCC_VERSION}"
-- ls ../arm-eabi-${GCC_VERSION}/bin
+- git clone --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
+- ls -l ../arm-eabi-${GCC_VERSION}/bin
 - export CROSS_COMPILE="${PWD}/../arm-eabi-${GCC_VERSION}/bin/arm-eabi-"
 - export PATH=$PATH:"${PWD}/../arm-eabi-${GCC_VERSION}/bin/"
-- echo $LD_LIBRARY_PATH
 #- source build.sh
 - export ARCH=arm && export SUBARCH=arm
 - make mrproper 
