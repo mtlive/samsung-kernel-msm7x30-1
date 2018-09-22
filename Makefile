@@ -579,7 +579,7 @@ ifdef CONFIG_CC_OPTIMIZE_MORE
 KBUILD_CFLAGS += -O3 -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize
 endif
 ifdef CONFIG_CC_OPTIMIZE_FAST
-KBUILD_CFLAGS += -O3 $(GRAPHITE) -fmodulo-sched -fmodulo-sched-allow-regmoves -fsingle-precision-constant -fsched-pressure -fno-unroll-loops -fipa-icf -fweb -flimit-function-alignment -flto
+KBUILD_CFLAGS += -O3 $(GRAPHITE) -fmodulo-sched -fmodulo-sched-allow-regmoves -fsingle-precision-constant -fsched-pressure -fno-unroll-loops  -fweb -flto #-fipa-icf -flimit-function-alignment 
 endif
 
 include $(srctree)/arch/$(SRCARCH)/Makefile
