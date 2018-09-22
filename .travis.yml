@@ -36,9 +36,9 @@ script:
 #- git clone --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
 - wget https://github.com/USBhost/build-tools-gcc/raw/master/build && chmod +x build
 - ./build -a arm -s linaro -v 7
-- ls -l ../arm-linux-gnueabi/
-- export CROSS_COMPILE="${PWD}/../arm-linux-gnueabi/bin/arm-eabi-"
-- export PATH=$PATH:"${PWD}/../arm-linux-gnueabi/bin/"
+- ls -l arm-linux-gnueabi/
+- export CROSS_COMPILE="${PWD}/arm-linux-gnueabi/bin/arm-eabi-"
+- export PATH=$PATH:"${PWD}/arm-linux-gnueabi/bin/"
 #- source build.sh
 - export ARCH=arm && export SUBARCH=arm
 - make mrproper 
