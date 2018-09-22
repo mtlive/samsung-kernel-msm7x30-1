@@ -5,7 +5,7 @@ sudo: required
 #- docker pull lineageos4microg/docker-lineage-cicd
 #- docker run -e "BRANCH_NAME=cm-11.0" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
 language: c
-env: GCC_VERSION=4.9
+env: GCC_VERSION=7.x
 addons:
   apt:
     packages:
@@ -16,6 +16,8 @@ script:
 #- git fetch RR
 #- git checkout cm-12.1
 #- git checkout -p RR/cm-12.1 drivers/media/video/msm/s5k4ecgx.c  drivers/media/video/msm/sr030pc30.c 
+- git reset --hard c465f68
+- git checkout
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/9121461faa73def5937210b8c760147740fe5c6a.patch | git am #kernel update
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/d1d5602c46926d22fe2b46106b79acf704ff933a.patch | git am #kernel update
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/78656d2697300d856e40a4da410ccca00c16763f.patch | git am #gcc 5+ fix
