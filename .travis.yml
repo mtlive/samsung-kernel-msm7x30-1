@@ -16,6 +16,7 @@ script:
 #- git fetch RR
 #- git checkout cm-12.1
 #- git checkout -p RR/cm-12.1 drivers/media/video/msm/s5k4ecgx.c  drivers/media/video/msm/sr030pc30.c 
+- git fetch --unshallow
 - git reset --hard c465f68
 - git checkout
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/9121461faa73def5937210b8c760147740fe5c6a.patch | git am #kernel update
