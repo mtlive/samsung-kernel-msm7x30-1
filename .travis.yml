@@ -9,7 +9,7 @@ env: GCC_VERSION=7.x
 addons:
   apt:
     packages:
-    - flex bison ncurses-dev texinfo gcc-7 g++-7 gperf patch libtool automake g++ libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1:i386 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev
+    - flex bison ncurses-dev texinfo gcc gperf patch libtool automake g++ libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1:i386 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev
 script:
 #- curl https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common/commit/9d533762fe84a1fb1bcd3e55a4ed338617d8b536.patch | git am --3way  --exclude arch/arm/configs/ancora_defconfig #updates
 #- git remote add RR https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common.git -b cm12.1
@@ -31,7 +31,7 @@ script:
 #- sudo dpkg -i libfl2_2.6.4-6.1_amd64.deb
 #- sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 - sudo apt-get update
-- sudo apt install libfl2 glibc
+- sudo apt install libfl2 gcc-7
 # getting UberTC
 #- git clone --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
 - wget https://github.com/USBhost/build-tools-gcc/raw/master/build && chmod +x build
