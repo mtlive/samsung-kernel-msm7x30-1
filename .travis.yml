@@ -34,11 +34,11 @@ script:
 #- sudo dpkg -i libfl2_2.6.4-6.1_amd64.deb
 #- sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 - sudo apt-get update
-- sudo apt-get install -f -y libfl2
+- sudo apt-get install -f -y libfl2 binutils make
 # getting UberTC
 #- git clone --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
 - wget https://github.com/USBhost/build-tools-gcc/raw/master/build && chmod +x build
-- ./build -a arm -s linaro -v 7 -V
+- travis_wait 30 ./build -a arm -s linaro -v 7
 - ls -l arm-linux-gnueabi/bin
 - export CROSS_COMPILE="${PWD}/arm-linux-gnueabi/bin/arm-linux-gnueabi-"
 - export PATH=$PATH:"${PWD}/arm-linux-gnueabi/bin/"
