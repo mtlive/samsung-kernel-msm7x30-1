@@ -29,7 +29,7 @@ script:
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/393ab392648781c2d3351266537856bad113cebd.patch | git am #static methods for iommu sync lock and unlock - gcc
 # Install dependency
 - sudo apt-get install -y dpkg
-- sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates main"
+- sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ xenial main"
 - sudo apt-get update
 - sudo apt-get install -y make binutils
 - sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ bionic main"
