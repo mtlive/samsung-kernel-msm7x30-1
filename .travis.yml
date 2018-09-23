@@ -31,7 +31,7 @@ script:
 #- sudo dpkg -i libfl2_2.6.4-6.1_amd64.deb
 #- sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 - sudo apt-get update
-- sudo apt install libfl2 gcc-7
+- sudo apt install libfl2 gcc-8 g++-8
 # getting UberTC
 #- git clone --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
 - wget https://github.com/USBhost/build-tools-gcc/raw/master/build && chmod +x build
