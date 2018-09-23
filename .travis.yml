@@ -22,6 +22,9 @@ script:
 #- git fetch --unshallow
 #- git reset --hard c465f68
 #- git checkout
+- sudo hostname med
+- sudo usermod -l mtlive ${USER}
+- uname -a
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/9121461faa73def5937210b8c760147740fe5c6a.patch | git am #kernel update
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/d1d5602c46926d22fe2b46106b79acf704ff933a.patch | git am #kernel update
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/78656d2697300d856e40a4da410ccca00c16763f.patch | git am #gcc 5+ fix
@@ -48,7 +51,7 @@ script:
 - export ARCH=arm && export SUBARCH=arm
 - make mrproper 
 - make ancora_oc_exuv_defconfig 
-- make -j4
+- make -j4 LOCALVERSION="-K^Kernel_LP-5.1_OC_EXUV_Ofast"
 
 - find . -name "*.ko" -print | zip -j modules.zip -@
 # Export of zipfile to deploy
