@@ -37,7 +37,7 @@ script:
 - wget https://github.com/USBhost/build-tools-gcc/raw/master/build && chmod +x build
 - ./build -a arm -s linaro -v 7 -V
 - ls -l arm-linux-gnueabi/bin
-- export CROSS_COMPILE="${PWD}/arm-linux-gnueabi/bin/arm-eabi-"
+- export CROSS_COMPILE="${PWD}/arm-linux-gnueabi/bin/arm-linux-gnueabi-"
 - export PATH=$PATH:"${PWD}/arm-linux-gnueabi/bin/"
 #- source build.sh
 - export ARCH=arm && export SUBARCH=arm
