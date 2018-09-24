@@ -11,7 +11,7 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - flex bison ncurses-dev texinfo gperf patch libtool automake libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1:i386 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev
+    - flex
     - gcc-8 g++-8
 script:
 #- curl https://github.com/RR-msm7x30/samsung-kernel-msm7x30-common/commit/9d533762fe84a1fb1bcd3e55a4ed338617d8b536.patch | git am --3way  --exclude arch/arm/configs/ancora_defconfig #updates
@@ -32,7 +32,7 @@ script:
 - sudo apt-get install -y dpkg
 - sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ xenial main"
 - sudo apt-get update
-- sudo apt-get install -qq make binutils g++-arm-linux-gnueabi
+- sudo apt-get install -qq make binutils g++-arm-linux-gnueabi  bison ncurses-dev texinfo gperf patch libtool automake libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1:i386 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev
 - sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ bionic main"
 #- wget http://ftp.br.debian.org/debian/pool/main/f/flex/libfl2_2.6.4-6.1_amd64.deb
 #- sudo dpkg -i libfl2_2.6.4-6.1_amd64.deb
