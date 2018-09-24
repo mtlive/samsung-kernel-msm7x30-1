@@ -41,11 +41,12 @@ script:
 - sudo apt-get install -y libfl2
 # getting UberTC
 #- git clone --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
-- wget https://github.com/USBhost/build-tools-gcc/raw/master/build && chmod +x build
-- ./build -a arm -s linaro -v 7 -V ; echo 1
-- ls -l arm-linux-gnueabi/bin
-- export CROSS_COMPILE="${PWD}/arm-linux-gnueabi/bin/arm-linux-gnueabi-"
-- export PATH=$PATH:"${PWD}/arm-linux-gnueabi/bin/"
+- git clone https://github.com/USBhost/build-tools-gcc tc
+- cd tc
+- ./build -a arm -s linaro -v 7 -V ; cd ..
+- ls -l tc/arm-linux-gnueabi/bin
+- export CROSS_COMPILE="${PWD}/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-"
+- export PATH=$PATH:"${PWD}/tc/arm-linux-gnueabi/bin/"
 - export ARCH=arm && export SUBARCH=arm
 - make mrproper 
 - make ancora_oc_exuv_defconfig 
