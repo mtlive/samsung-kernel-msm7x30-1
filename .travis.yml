@@ -32,7 +32,7 @@ script:
 - sudo apt-get install -y dpkg
 - sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ xenial main"
 - sudo apt-get update
-- sudo apt-get install -y make binutils
+- sudo apt-get install -qq make binutils g++-arm-linux-gnueabi
 - sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ bionic main"
 #- wget http://ftp.br.debian.org/debian/pool/main/f/flex/libfl2_2.6.4-6.1_amd64.deb
 #- sudo dpkg -i libfl2_2.6.4-6.1_amd64.deb
