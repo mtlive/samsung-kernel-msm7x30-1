@@ -50,9 +50,9 @@ script:
 - export CROSS_COMPILE="${PWD}/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-"
 - export PATH=$PATH:"${PWD}/tc/arm-linux-gnueabi/bin/"
 - export ARCH=arm && export SUBARCH=arm
-- make mrproper 
-- make ancora_oc_exuv_defconfig 
-- make -j4 LOCALVERSION="-K^Kernel_LP-5.1_OC_EXUV_Ofast" EMAIL="Mohammad@med"
+#- make mrproper 
+#- make ancora_oc_exuv_defconfig 
+#- make -j4 LOCALVERSION="-K^Kernel_LP-5.1_OC_EXUV_Ofast" EMAIL="Mohammad@med"
 - docker exec -e CROSS_COMPILE="/home/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-" -e ARCH=arm -e SUBARCH=arm -v "$(pwd)":/home -w /home -u root ubuntu sh -c "export PATH=$PATH:"/home/tc/arm-linux-gnueabi/bin/" && make mrproper && make ancora_oc_exuv_defconfig && make -j4 LOCALVERSION="-K^Kernel_LP-5.1_OC_EXUV_Ofast" EMAIL="Mohammad@med""
 - find . -name "*.ko" -print | zip -j modules.zip -@
 # Export of zipfile to deploy
