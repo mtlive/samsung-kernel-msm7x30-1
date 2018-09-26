@@ -6,7 +6,7 @@ before_install:
 #- docker run -e "BRANCH_NAME=cm-11.0" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
 - docker pull ubuntu:latest
 - docker run --detach --name ubuntu -v "$(pwd)":/home -u root ubuntu:latest sleep 1000
-- docker exec -u root ubuntu sh -c "apt-get update && apt-get install -y flex bison ncurses-dev texinfo gcc gperf patch libtool automake g++ libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev git"
+- docker exec -u root ubuntu sh -c "apt-get update && apt-get install -y flex bison ncurses-dev texinfo gcc gperf patch libtool automake g++ libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev git sudo"
 language: c
 env: GCC_VERSION=7.x
 addons:
@@ -53,6 +53,7 @@ script:
 - make mrproper 
 - make ancora_oc_exuv_defconfig 
 - make -j4 LOCALVERSION="-K^Kernel_LP-5.1_OC_EXUV_Ofast" EMAIL="Mohammad@med"
+- docker run -e CROSS_COMPILE="/home/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-" -e ARCH=arm -e SUBARCH=arm -v "$(pwd)":/home -u root ubuntu sh -c "export PATH=$PATH:"/home/tc/arm-linux-gnueabi/bin/" && make mrproper && make ancora_oc_exuv_defconfig && make -j4 LOCALVERSION="-K^Kernel_LP-5.1_OC_EXUV_Ofast" EMAIL="Mohammad@med""
 - find . -name "*.ko" -print | zip -j modules.zip -@
 # Export of zipfile to deploy
 #- export zipfile="${zipfile}"
