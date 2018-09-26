@@ -5,7 +5,7 @@ before_install:
 #- docker pull lineageos4microg/docker-lineage-cicd
 #- docker run -e "BRANCH_NAME=cm-11.0" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
 - docker pull ubuntu:latest
-- docker run -v "$(pwd):/$(pwd)" ubuntu:latest apt-get install flex bison ncurses-dev texinfo gcc gperf patch libtool automake g++ libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1:i386 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev
+- docker run --name ubuntu ubuntu:latest -v "$(pwd):/$(pwd)" apt-get update && apt-get install flex bison ncurses-dev texinfo gcc gperf patch libtool automake g++ libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1:i386 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev
 language: c
 env: GCC_VERSION=7.x
 addons:
@@ -32,9 +32,9 @@ script:
 - curl https://github.com/mtlive/samsung-kernel-msm7x30/commit/393ab392648781c2d3351266537856bad113cebd.patch | git am #static methods for iommu sync lock and unlock - gcc
 # Install dependency
 - sudo apt-get install -y dpkg
-- sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ xenial main"
-- sudo apt-get update
-- sudo apt-get install -qq make binutils g++-arm-linux-gnueabi  bison ncurses-dev texinfo gperf patch libtool automake libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1:i386 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev
+#- sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ xenial main"
+#- sudo apt-get update
+#- sudo apt-get install -qq make binutils g++-arm-linux-gnueabi  bison ncurses-dev texinfo gperf patch libtool automake libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1:i386 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev
 - sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ bionic main"
 #- wget http://ftp.br.debian.org/debian/pool/main/f/flex/libfl2_2.6.4-6.1_amd64.deb
 #- sudo dpkg -i libfl2_2.6.4-6.1_amd64.deb
@@ -45,7 +45,7 @@ script:
 #- git clone --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
 - git clone https://github.com/USBhost/build-tools-gcc tc
 - cd tc
-- ./build -a arm -s linaro -v 7 -V ; cd ..
+- docker exec -it ubuntu sh -c "cd $(pwd) && ./build -a arm -s linaro -v 7 -V ; cd .."
 - ls -l tc/arm-linux-gnueabi/bin
 - export CROSS_COMPILE="${PWD}/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-"
 - export PATH=$PATH:"${PWD}/tc/arm-linux-gnueabi/bin/"
