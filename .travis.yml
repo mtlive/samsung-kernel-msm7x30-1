@@ -45,7 +45,7 @@ script:
 # getting UberTC
 #- git clone --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
 - git clone https://github.com/USBhost/build-tools-gcc tc
-- travis_wait 30 docker run ubuntu sh -c "cd /home/tc && ./build -a arm -s linaro -v 7 ; cd .."
+- travis_wait 30 docker run -v "$(pwd)":/home ubuntu sh -c "cd /home/tc && ./build -a arm -s linaro -v 7 ; cd .."
 - ls -l tc/arm-linux-gnueabi/bin
 - export CROSS_COMPILE="${PWD}/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-"
 - export PATH=$PATH:"${PWD}/tc/arm-linux-gnueabi/bin/"
