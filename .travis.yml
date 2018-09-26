@@ -5,7 +5,7 @@ before_install:
 #- docker pull lineageos4microg/docker-lineage-cicd
 #- docker run -e "BRANCH_NAME=cm-11.0" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
 - docker pull ubuntu:latest
-- docker run --detach --name ubuntu -v "$(pwd)":/home -u root ubuntu:latest sleep 3000
+- docker run --detach --name ubuntu -v "$(pwd)":/home -u root ubuntu:latest sleep 6000
 - docker exec -u root ubuntu sh -c "apt-get update && apt-get install -y flex bison ncurses-dev texinfo gcc gperf patch libtool automake g++ libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev git sudo"
 language: c
 env: GCC_VERSION=7.x
@@ -45,7 +45,7 @@ script:
 # getting UberTC
 #- git clone --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
 - git clone https://github.com/USBhost/build-tools-gcc tc
-- travis_wait 30 docker exec -u root ubuntu sh -c "cd /home/tc && ./build -a arm -s linaro -v 7 ; cd .."
+- travis_wait 60 docker exec -u root ubuntu sh -c "cd /home/tc && ./build -a arm -s linaro -v 7 ; cd .."
 - ls -l tc/arm-linux-gnueabi/bin
 - export CROSS_COMPILE="${PWD}/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-"
 - export PATH=$PATH:"${PWD}/tc/arm-linux-gnueabi/bin/"
