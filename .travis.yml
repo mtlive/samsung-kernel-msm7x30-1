@@ -7,7 +7,7 @@ before_install:
 - docker pull ubuntu:latest
 - docker run --detach --name ubuntu -v "$(pwd)":/home -u root ubuntu:latest sleep 6000
 - docker exec -u root ubuntu sh -c "apt-get update && apt-get install -y flex bison ncurses-dev texinfo gcc gperf patch libtool automake g++ libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev git sudo"
-- docker exec -u root –hostname med ubuntu sh -c "hostname -f && useradd Mohammad"
+- docker exec -u root --hostname med ubuntu sh -c "hostname -f && useradd Mohammad"
 language: c
 env: GCC_VERSION=7.x
 addons:
