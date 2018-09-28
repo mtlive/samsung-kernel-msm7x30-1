@@ -7,7 +7,6 @@ before_install:
 - docker pull ubuntu:latest
 - docker run --detach --name ubuntu --hostname med -v "$(pwd)":/home -u root ubuntu:latest sleep 6000
 - docker exec -u root ubuntu sh -c "apt-get update && apt-get install -y flex bison ncurses-dev texinfo gcc gperf patch libtool automake g++ libncurses5-dev gawk subversion expat libexpat1-dev python-all-dev binutils-dev libgcc1 bc libcloog-isl-dev libcap-dev autoconf libgmp-dev build-essential gcc-multilib g++-multilib pkg-config libmpc-dev libmpfr-dev autopoint gettext txt2man liblzma-dev libssl-dev libz-dev git sudo"
-- docker exec -u root ubuntu sh -c "hostname -f && useradd Mohammad"
 language: c
 env: GCC_VERSION=7.x
 addons:
@@ -54,6 +53,7 @@ script:
 #- make mrproper 
 #- make ancora_oc_exuv_defconfig 
 #- make -j4
+- docker exec -u root ubuntu sh -c "hostname -f && useradd Mohammad"
 - docker exec -e CROSS_COMPILE="/home/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-" -e ARCH=arm -e SUBARCH=arm -u Mohammad ubuntu sh -c "export PATH=$PATH:"/home/tc/arm-linux-gnueabi/bin/" && cd /home && make mrproper && make ancora_oc_exuv_defconfig && make -j4"
 - find . -name "*.ko" -print | zip -j modules.zip -@
 # Export of zipfile to deploy
