@@ -45,7 +45,7 @@ script:
 # getting UberTC
 #- git clone --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
 - git clone https://github.com/USBhost/build-tools-gcc tc
-- travis_wait 60 docker exec -u root ubuntu sh -c "cd /home/tc && ./build -a arm -s linaro -v 7 ; cd .."
+- travis_wait 60 docker exec -u root ubuntu sh -c "hostname med && cd /home/tc && ./build -a arm -s linaro -v 7 ; cd .."
 - ls -l tc/arm-linux-gnueabi/bin
 - export CROSS_COMPILE="${PWD}/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-"
 - export PATH=$PATH:"${PWD}/tc/arm-linux-gnueabi/bin/"
@@ -53,7 +53,7 @@ script:
 #- make mrproper 
 #- make ancora_oc_exuv_defconfig 
 #- make -j4 LOCALVERSION="-K^Kernel_LP-5.1_OC_EXUV_Ofast" EMAIL="Mohammad@med"
-- docker exec -e CROSS_COMPILE="/home/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-" -e ARCH=arm -e SUBARCH=arm -u root ubuntu sh -c "export PATH=$PATH:"/home/tc/arm-linux-gnueabi/bin/" && cd /home && make mrproper && make ancora_oc_exuv_defconfig && make -j4 LOCALVERSION="-K^Kernel_LP-5.1_OC_EXUV_Ofast" EMAIL="Mohammad@med""
+- docker exec -e CROSS_COMPILE="/home/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-" -e ARCH=arm -e SUBARCH=arm -u Mohammad ubuntu sh -c "export PATH=$PATH:"/home/tc/arm-linux-gnueabi/bin/" && cd /home && make mrproper && make ancora_oc_exuv_defconfig && make -j4"
 - find . -name "*.ko" -print | zip -j modules.zip -@
 # Export of zipfile to deploy
 #- export zipfile="${zipfile}"
