@@ -54,7 +54,7 @@ script:
 #- make ancora_oc_exuv_defconfig 
 #- make -j4
 - docker exec -u root ubuntu sh -c "hostname -f && useradd Mohammad -g root"
-- docker exec -e CROSS_COMPILE="/home/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-" -e ARCH=arm -e SUBARCH=arm -u Mohammad ubuntu sh -c "export PATH=$PATH:"/home/tc/arm-linux-gnueabi/bin/" && cd /home && sudo make mrproper && sudo make ancora_oc_exuv_defconfig && sudo make -j4"
+- docker exec -e CROSS_COMPILE="/home/tc/arm-linux-gnueabi/bin/arm-linux-gnueabi-" -e ARCH=arm -e SUBARCH=arm -u Mohammad ubuntu sh -c "export PATH=$PATH:"/home/tc/arm-linux-gnueabi/bin/" && cd /home && make mrproper && make ancora_oc_exuv_defconfig && make -j4"
 - find . -name "*.ko" -print | zip -j modules.zip -@
 # Export of zipfile to deploy
 #- export zipfile="${zipfile}"
